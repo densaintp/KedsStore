@@ -1,0 +1,25 @@
+﻿@model IEnumerable<KedsStore.Models.Item>
+
+@{
+    ViewData["Title"] = "Store";
+}
+
+<h2 class="my-4">Магазин</h2>
+
+<div class="row">
+    @foreach(var item in Model)
+    {
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="product-item">
+                <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Id">
+                <img src="@item.ImgPath" asp-append-version="true"/>
+                    <div class="product-list">
+                        <h3>@item.Name</h3>
+                        <span class="price">@item.Price.ToString("c")</span>
+                        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id" class="button">В корзину</a>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
